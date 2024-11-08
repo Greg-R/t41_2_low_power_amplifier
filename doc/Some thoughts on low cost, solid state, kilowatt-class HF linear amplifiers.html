@@ -1,0 +1,3378 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0047)https://ludens.cl/Electron/mosfetamps/amps.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+
+
+  
+  
+  
+  <meta name="description" content="Ideas and doubts about homebrew high power solid state linear amplifiers for amateur radio use.">
+
+
+
+
+  
+  
+  
+  <meta name="keywords" content="class F, class E, class AB, class C, linear amplifier, legal limit, solid state, MOSFET, MOSFETs, amateur, radio, ham, EER, envelope, PWM, pulse width modulation, phase, transformer">
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+  
+  
+  
+  <meta name="Author" content="Manfred Mornhinweg">
+
+
+
+
+  
+  
+  
+  <meta name="GENERATOR" content="Mozilla/4.76 [en] (Win98; U) [Netscape]">
+
+
+
+
+  
+  
+  
+  <meta name="Description" content="Ideas and doubts about homebrew high power solid state linear amplifiers for amateur radio use.">
+
+
+
+
+  
+  
+  
+  <meta name="KeyWords" content="class F">
+
+
+
+
+  
+  
+  
+  <meta name="ProgId" content="Excel.Sheet">
+
+
+
+
+  
+  
+  
+  <meta name="Generator" content="Microsoft Excel 9">
+
+
+
+  
+  
+  
+  <title>Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers</title>
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 204);" alink="#ff0000" link="#ff0000" vlink="#990000">
+
+
+
+
+<center>
+<h1>Some thoughts on low cost, solid state,&nbsp;efficient,
+kilowatt-class HF linear amplifiers</h1>
+
+
+
+
+</center>
+
+
+
+
+<p> For several years I have been thinking about ways to build a
+solid state legal-limit amplifier for&nbsp;amateur radio use. It's
+not that I would absolutely need one! I own an old National Radio
+NCL-2000 tube-type amplifier, that still works very well.
+But&nbsp;out of technical interest I would like to develop a solid
+state amplifier. This new amplifer <strong>must</strong>
+have at least one technical advantage over plain simple common
+traditional amplifiers: Either it must be ultra low cost along with
+respectable performance, or it might be extremely small and
+lightweight, extremely efficient, or anything else like that. It should
+be an <strong>interesting</strong> amplifier, not just a
+brute force tool to get high RF power. And it <strong>must</strong>
+meet some basic requirements: The cost shall be low enough in any case
+to make the project worthwhile; it must provide&nbsp;enough
+spectral quality to not be a nuisance to other hams, and it must
+operate either in complete silence, or with very low noise. I'm fed up
+with the loud whirring&nbsp;blower of the NCL-2000!</p>
+
+
+
+
+<p> I'm writing this page for three purposes: To bring some order
+and organization into my&nbsp;ideas; to&nbsp;allow others to
+eavesdrop into my work and maybe get a good idea or two from it; and
+mainly to try and start an intelligent discussion on this matter. I
+warmly welcome contributions! This article contains many assumptions I
+made, based on my incomplete knowledge of the
+many quirks of MOSFETs,&nbsp;so if you find mistakes and/or
+you have good ideas, please let me know! My e-mail address
+is<img src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/add.gif" align="texttop" border="0" height="19" hspace="0" width="152">.<!--[if supportMisalignedColumns]-->
+<!--[endif]--> I wrote this in november 2010, so if you
+happen to read it sometime in the 22nd century, forgive me for being
+out of date.&nbsp;</p>
+
+
+
+
+<h2> Basic design concepts</h2>
+
+
+
+
+<p> I was considering several totally different basic ideas to
+build an amplifier:</p>
+
+
+
+
+<p> - A conventional class AB push pull amplifier, whose special
+features lie basically in using high voltage MOSFETs and operating
+directly from the rectified and filtered mains voltage. If reasonably
+low cost MOSFETs are used, this would lead to a compact, very
+lightweight, low cost amplifier, having a slightly better efficiency
+than those using power supplies that convert the voltage. The
+MOSFETs&nbsp;could be something like the ARF1505, or perhaps some
+low cost switching type pressed into this service.</p>
+
+
+
+
+<p> - Conventional class AB push pull amplifier, operating from a
+switching power supply that is modulated to keep the voltage just a
+little above the RF voltage produced. This would be relatively simple
+and inexpensive, and would offer reasonably small size and low weight
+along with somewhat better efficiency than standard class AB
+amplifiers. The active devices could be ARF1500, IXZ210N50L, or
+perhaps&nbsp;common low cost switching MOSFETs pressed into linear
+RF service.&nbsp;&nbsp;</p>
+
+
+
+
+<p> -&nbsp;Water cooling: It's an advantage to be able to run
+a MOSFET at the highest possible power, because that reduces the number
+of devices, and thus the capacitances, complexity and cost. This
+requires the best possible cooling. Water cooling should allow running
+a MOSFET at higher power than with conventional heatsink-and-fan
+cooling. It would also essentially&nbsp;eliminate noise. For
+non-intensive use, the heat could simply be discharged into a bucket of
+water sitting under the operating desk! The only noise would be that
+from a tiny water pump.</p>
+
+
+
+
+<p> - Class E or class F amplifier using envelope elimination and
+restoration: This would not be the simplest approach, but it would lead
+to a highly efficient, small, lightweight, silent&nbsp;amplifier,
+at reasonable cost. The MOSFETs could be RF switching types, of which
+Ixys has some nice ones.&nbsp;I actually built a scaled-down
+prototype, but ran into trouble. More about that comes further down
+this page.</p>
+
+
+
+
+<p> - Pulse-width-modulated switching-type amplifier. This is my
+latest pet idea. The pulse frequency is the RF frequency, the phase
+information would be carried by the pulse position, and the amplitude
+information by the pulse width. It requires really fast switching
+MOSFETs and drivers, but could lead to a low cost, highly efficient
+amplifier. This concept can use an unregulated power supply having only
+mediocre filtering, without significant disadvantage.</p>
+
+
+
+
+<hr>
+<p>Before starting with the main article, I would like to draw
+your attention toward&nbsp;one item first, that is often
+misunderstood:</p>
+
+
+
+
+<h2>Output architectures of conventional class AB push-pull
+amplifiers</h2>
+
+
+
+
+<p>&nbsp;This technology is very well established, to the
+point that many designers simply copy standard layouts and optimize the
+component values, instead of coming up with new ideas. This leads to
+copying the mistakes as well as the good ideas! One of these mistakes
+is the incorrect understanding and use of the typical
+push-pull&nbsp;output transformer, the kind that is wound on a
+two-hole ferrite core, on two ferrite tubes, or on two stacks of
+ferrite toroids placed side-by-side.&nbsp;I will explain this, and
+I would like to read your comments on this matter, if you have any!</p>
+
+
+
+
+<p>This is the basic layout of the output circuit of a
+typical&nbsp;push pull class AB amplifier:&nbsp;</p>
+
+
+
+
+<p align="center"><img src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/fig1.gif" border="0" height="127" hspace="5" vspace="5" width="184">
+</p>
+
+
+
+
+<p>There is absolutely nothing wrong with this circuit. It works
+like this: When there is no drive, the transistors are biased to the
+brink of conduction, and the voltage on all three terminals of the
+transformer primary winding is Vcc. When drive starts, during one
+semicycle Q1 conducts a current, while Q2 is off. The current flows
+from the power supply through the upper half of the primary winding and
+through Q1 to ground. This current starts small,&nbsp;increases to
+a peak, and gets small again. At the same&nbsp;time, the voltage on
+the primary winding's upper terminal gets pulled down from the Vcc
+value. Due to coupling between turns, the voltage on the lower
+terminal, and thus on Q2's drain, goes higher than Vcc. When the
+amplifier is being driven just to the limit of its linear capability,
+the voltage on Q1's drain will reach a value very close to zero (this
+is the saturation voltage for that transistor), while the voltage on
+Q2's drain will go up from Vcc by the same amount as Q1's drain went
+down, reaching almost twice Vcc. The voltage on the output terminal
+will be proportional to that on the primary winding, with the voltage
+ratio given by the turns ratio. The current flowing in the secondary
+winding will depend on this voltage, and on the load connected. The
+current in Q1 will depend on this secondary current and on the turns
+ratio, while Q2 will conduct no current.</p>
+
+
+
+
+<p>To put numbers to all this, let's assume the case of a 100
+Watt amplifier powered by 13.8V, like those used in typical HF
+transceivers. Even if most of them use bipolar transistors rather than
+MOSFETs, the output circuit won't be different. The turns ratio in such
+an amplifier will be 1:4 between the entire primary and the secondary
+windings. When operating at 100 watts into a 50 ohm load
+resistance,&nbsp;at the waveform peak Q1's drain will be at 1.3V,
+and Q2's drain will be at 26.3V. This makes 25V across the primary. The
+1:4 transformer raises this to 100V.&nbsp;On a 50 Ohm load, this
+makes a secondary peak current of 2A. Since the lower half of the
+primary winding cannot conduct any current, given that Q2&nbsp;is
+not conducting, all of the primary current has to flow in&nbsp;the
+upper half.&nbsp;So we have a turns ratio of 1:8 there, meaning
+that the peak current flowing through Q1 will be 16A.</p>
+
+
+
+
+<p>On the next half cycle, of course, the roles of Q1 and Q2
+reverse, but the math remains the same.</p>
+
+
+
+
+<p>Under these conditions, the 50 Ohm load sees a peak voltage of
+100V, peak-to-peak voltage of 200V, and an RMS voltage of 70.71V, which
+produces 100W output power into that load. At the same time, the DC
+current consumed from the power supply is the average of the sine
+waveform ( <strong>not</strong> the RMS value!), which
+is&nbsp;2/PI times the peak value. That is 10.186A in this case, so
+that the input power to this amplifier is 140.6W.&nbsp;Thus the
+efficiency of this stage is 71%.</p>
+
+
+
+
+<p>If you have any experience working with radio,&nbsp;you
+will know that real world solid state broadband linear amplifiers are
+hardly ever as efficient as this. Efficiency is often stated as only
+45%! &nbsp;This needs at least two explanations:</p>
+
+
+
+
+<p>Firstly, the math I did above does not consider all
+losses.&nbsp;The
+only loss I considered is the one that happens due to transistor
+saturation being well above zero volts. But in practice there are
+additional losses in the transformer, feedback circuits, and also there
+is a small but nonzero bias current flowing, to make the stage work in
+class AB rather than pure class B, which wouldn't provide enough
+linearity. In addition, the user wants to see 100 watts at the
+radio's&nbsp;antenna terminal, so the amplifier has to deliver a
+few
+additional watts to cover losses in the low pass filter and sensing
+circuitry. For all these reasons, it would be reasonable to get only
+about 65% efficiency instead of 71%, but many practical implementations
+fall far short from this goal! Interestingly, many tube type linear
+amplifiers do&nbsp;have about 65% efficiency. It's not that tubes
+are
+better than transistors, nor that tuned circuits must deliver better
+efficiency than broadband ones.&nbsp;The reasons are others.</p>
+
+
+
+
+<p>Part of this discrepancy can be explained by data sheets
+sometimes stating the efficiency of linear amplifier stages based on a
+two-tone signal, not a single tone like I assumed&nbsp;above. A
+two-tone signal gives a waveform that spends much more time at the
+lower voltage levels, in which a larger proportion of Vcc is dissipated
+in the transistors rather than being applied to the output transformer.
+So it's normal that the two-tone efficiency is much lower than the
+single-tone one. But the problem is that many practical amplifier
+stages used in actual radios show a lower than normal efficiency even
+in single-tone&nbsp;testing! The final stage of my 100 watt
+radio&nbsp;draws between 14 and 17A when delivering 100W, depending
+on the band. The complete radio draws up to 21A.&nbsp;That's a
+single-tone efficiency for the final stage between 52% and 43%! It's
+much too low, compared to the theoretical values for class B or AB
+amplifiers, and there must be a reason for this.</p>
+
+
+
+
+<p>&nbsp;&nbsp;<img src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/transformer.jpg" align="left" border="0" height="421" hspace="8" vspace="8" width="358">&nbsp;&nbsp;&nbsp;</p>
+
+
+
+
+<p>This photo, taken from the ARRL Handbook, shows the typical
+way the output transformers for such amplifiers are built. The 1-turn
+primary is made from pieces of metal tubing inserted in the cores,
+joined at one end by a piece of PCB to form a full turn.&nbsp;It
+becomes immediately apparent that this device <strong>cannot</strong>
+be correctly represented as shown in the schematic above! This device
+can be&nbsp;considered a single transformer <strong>only</strong>
+if the "center tap" (which&nbsp;isn't a true center tap at all!) of
+the primary winding isn't used! This is because&nbsp;it
+has&nbsp;<strong>two independent</strong> magnetic
+cores. The magnetic flux created by each of the metal tubes flows ONLY
+in the ferrite tube that covers it, and <strong>not</strong>
+in its neighbor. If the "center tap"&nbsp;isn't used, the two metal
+tubes are always in series, always see the same current, and so it
+doesn't matter whether the transformer has a single core, or two cores.
+But if the metal tubes can take different currents, such as happens
+when the "center tap" is used, then the two ferrite tubes can have
+totally different flux in them, effectively forming two separate
+transformers, with their <strong>secondaries</strong>
+connected in series without a tap at the connection, and the primaries
+connected in series <strong>with </strong>a tap!</p>
+
+
+
+
+<p>It should be noted that the common practice of using a single
+ferrite core that has two holes doesn't change anything of this. Even
+if the ferrite is a single chunk instead of two separate chunks, the
+magnetic circuits around the two holes are still independent.</p>
+
+
+
+
+<p>&nbsp;</p>
+
+
+
+
+<p>To make it clearer, this is the true schematic representation
+of a push-pull amplifier using this output transformer:</p>
+
+
+
+
+<p align="center"><img src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/fig2.gif" border="0" height="200" hspace="8" vspace="8" width="249">
+</p>
+
+
+
+
+<p>Since this drawing looks too much like a dish of noodles, we
+can use a simplified equivalent instead:</p>
+
+
+
+
+<p align="center"><img src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/fig3.gif" border="0" height="160" hspace="8" vspace="8" width="206">
+</p>
+
+
+
+
+<p>The important fact is that the two cores are separate, and
+this has serious implications on the way the circuit works.</p>
+
+
+
+
+<p> Repeating the same analysis made for the circuit in figure 1,
+we get a surprise: When Q1 is starting to conduct when we just apply
+drive, it's pulling low the upper side of the primary winding
+on&nbsp;T1a.&nbsp;This makes&nbsp; a voltage appear on
+T1a's secondary, with the negative side up. This tries to make a
+current flow in the load, and thus also in the secondary of T1b, since
+they are all in series. But T1b's secondary cannot conduct a current
+now, because Q2 is off and so there is no place the corresponding
+primary current could go! An ideal transformer cannot have the current
+in one winding change, without the corresponding opposed change in
+current in its other winding. And we want T1 to be pretty close to
+ideal, right?</p>
+
+
+
+
+<p> What happens then is that there flows no current in the
+load,&nbsp;and the full voltage developed on the secondary of T1a
+appears on the secondary of T1b, with the positive side up. So a
+corresponding smaller voltage appears on T1b's primary, also with the
+positive side up. That means,&nbsp;Q1 pulling its drain down from
+Vcc will also pull down the voltage on Q2's drain, by the same amount!
+The voltage on Q2's drain should go&nbsp;<strong>up</strong>
+in this situation, if the push-pull circuit were working correctly, but
+instead it's going <strong>down</strong>! No significant
+output appears across the load, but there is some net DC voltage across
+the transformers' primaries, which slowly starts building up a DC
+current in the two primaries.</p>
+
+
+
+
+So&nbsp;it's clear that this amplifier configuration <span style="font-weight: bold;">cannot respond to fast changes in
+the amplitude of the RF signal!</span>
+&nbsp;It can only
+respond to any form of amplitude modulation as long as the highest
+frequency component of the envelope is of a frequency low enough that
+the transformers have no significant impedance there. Instead the
+correctly configured circuit, with a properly coupled output
+transformer, is free from this problem. For SSB transmission on HF
+this&nbsp;point is irrelevant, but not in some other applications of
+broadband amplifiers.<br>
+
+
+
+
+<br>
+
+
+
+
+Now let's see what happens under steady-state conditions, while
+amplifying a continuous unmodulated carrier: In this condition, a
+suitable direct current will have been set up in each primary, over the
+course of many RF cycles.&nbsp; While Q1 is in its active range, it
+tries to conduct a half-wave sine of current, while T1a tries to keep
+the total current in it (primary current plus secondary current, each
+multiplied by the number of turns of each winding) to stay constant.
+The result is that the secondary has to conduct a half sine current
+too, which seems fine! &nbsp;But there is a problem: T1a's
+secondary is in series with T1b's. And T1b acts just like T1a, only
+that Q2 isn't conducting at this time! So, there is no primary current
+in T1b, which means that its secondary winding must carry the whole
+transformer current - and that's a constant current, instead of a half
+sine shaped current! <br>
+
+
+
+
+<br>
+
+
+
+This cannot work well!<br clear="all">
+
+
+
+<br>
+
+
+
+<img style="border: 1px solid ; width: 443px; height: 296px; float: right;" alt="" src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/ampWrongNoFB.png" hspace="8" vspace="3">If
+the transformers behave reasonably close to perfect transformers, then
+T1b will inevitably win, and the current through the load will be
+essentially constant during each half cycle, so that the total load
+current approaches a square wave instead of a sine wave. But this still
+doesn't&nbsp;completely explain how this amplifier can work, because
+while T1b tries to force a continuous current in the secondaries while
+Q2 is off, Q1 is being driven with a half sine wave, so that at first
+it can conduct only a small current, then more, then more than needed,
+then less again, and then too little. As a result, Q1 will saturate
+over a part of the cycle, even when the amplifier is driven at a level
+far lower than its maximum. And close to the zero crossings of the sine
+drive signal, the drain voltages - for both transistors - will soar to
+very high levels, because neither of the two transistors can conduct
+the current that the transformers are forcing into that circuit, nor is
+there any alternative path to ground!<br>
+
+
+
+<br>
+
+
+
+The image shown here is for a simulated amplifier running from 12V,
+with a 1:1output transformer configured the wrong way, and a 20&#8486;
+load.&nbsp; The red curve is the drain voltage of Q1, while the green
+curve is the voltage across the load. Note that the peak drain voltage
+is high enough to make 12V RF transistors enter avalanche breakdown, or
+even burn them out!<br clear="all">
+
+
+
+<br>
+
+
+
+<img style="border: 1px solid ; width: 442px; height: 296px; float: left;" alt="" src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/ampWrongWithFB.png" hspace="8" vspace="3">These
+high voltage peaks can be brought under control by several methods. One
+is applying negative feedback from the drains to the gates. This forces
+both transistors to conduct a higher current when the drain voltages
+rise too much around the zero crossings, having roughly the same effect
+as a dynamic bias that lifts the quiescent current during those zero
+crossings. In effect this moves the operating point of the amplifier
+somewhat closer to class A, with its efficiency penalty. <br>
+
+
+
+<br>
+
+
+
+As the image shows, the high and dangerous voltage peaks are gone now,
+but the waveforms don't really look better! This is definitely not what
+you would expect to see in a&nbsp;linear push pull amplifier, right?<br clear="all">
+
+
+
+<br>
+
+
+
+<img style="width: 450px; height: 338px; float: right;" alt="" src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/TS50Collector.jpg" hspace="8" vspace="3">If
+you don't believe my simulations, get any of the many
+current&nbsp;transceivers that use this wrong&nbsp;
+configuration,&nbsp;get a scope too, and have a look at the drain
+voltage waveforms! You will see that they correspond rather well with
+this simulation. <br>
+
+
+
+<br>
+
+
+
+This screenshot is of my scope, hooked to one of the collectors in the
+final stage of my Kenwood TS-50 transceiver, running at 50W on the 20m
+band. The radio's&nbsp;capacitive-input low-pass filter, and my 50MHz
+bandwidth scope, smooth all the corners related to&nbsp;high harmonics
+in the waveform, but the very fundamental effect of the positive tip of
+the sinewave being&nbsp;reversed is blatantly obvious!&nbsp; <br clear="all">
+
+
+
+<br>
+
+
+
+Using strong drain-gate feedback incurs in a significant power loss in
+the necessary resistors. For this reason, many amplifiers (both with
+the correct and the wrong configuration) use a differential negative
+feedback taken from a down-transformed sample of the output. This is
+effective on the output waveform but not on the common-mode drain
+voltages. The designers of these&nbsp;amplifiers see themselves forced
+to implement some patches to keep the peak drain voltages under
+control. Typically these take the form of a large choke in series with
+the power supply, without a bypass capacitor at the false center point,
+but with a hefty low value resistor in parallel with the choke!
+&nbsp;This works, but is very lossy too. Also some designers love to
+slap rather capacitors in parallel with the transistors, more than
+required for compensation of stray inductances. These capacitors tend
+to provide at least some path to ground for the harmonics, specially
+the higher ones, reducing the peak voltage level in the higher
+frequency region. Also often very marginal transformer inductance is
+used, which tends to reduce the amplitude&nbsp; of these peaks in the
+lower frequency range. <br>
+
+
+
+<br>
+
+
+
+The combination of such lossy patches, and the "forced near class-A"
+operation of this amplifier configuration, explain the low efficiency
+obtained.<br>
+
+
+
+<br>
+
+
+
+Note that my test amplifier wasn't using any low pass filter. After a
+low pass filter of course there will be a clean sine wave, but the
+efficiency will become even lower, and the bad waveforms in the
+amplifier will remain!<br>
+
+
+
+<br>
+
+
+
+When I built my very first&nbsp;broadband push-pull
+amplifier, at age 14, I didn't yet understand these matters. I got
+barely 30% efficiency, very poor gain, and burned out several
+transistors. I added zener diodes to clip the high voltage&nbsp;pulses,
+until deciding that the design I was copying from a book had a
+serious flaw. I couldn't find out then which flaw it was. I built a
+different amplifier, a tuned one, and that had better than 60%
+efficiency, using the same transistors, and never failed in over 30
+years since it was built.
+<p>Note that if the transistors were deliberately biased into class A,
+this
+circuit would work fine! In class A, each of the two transistors would
+conduct during the entire RF cycle, only in opposite phase. Each of the
+two transformers&nbsp;would see a complete sine wave with a
+superimposed DC component on its primary side, and a pure sine wave on
+the secondary side. The DC component is usually irrelevant in RF
+transformers, because it's no larger than the RF component, and RF flux
+density has to be kept very low anyway to avoid excessive loss in the
+core, so that the resulting low DC flux density is very far from
+causing saturation. So, the circuit with the two separate transformer
+cores works well in class A, and some designers indeed have found that
+they have to bias their amplifiers well into class A to get them to
+work, and to keep the peak drain voltage inside a safe range. The usual
+symptom is poor&nbsp;gain and dismal efficiency in class B, with
+normal behavior in class A. Biased into class AB, the amplifiers will
+have good performance up to the power level where the operation moves
+from
+class A mostly into class B, and there the gain will&nbsp;drop, the
+waveform will distort, and high drain voltage peaks will appear. This
+change of gain, when transitioning from class A operation into class
+AB, also explains the poorer IMD performance of the wrongly configured
+amplifiers, when compared to a correct configuration.</p>
+
+
+
+If the output transformer is built on one single core, having
+one single magnetic loop, such as a toroid, of course the circuit will
+work fine in class AB and class B too. And if the transformer is built
+from two separate cores, like the one in the photo, but the primary
+winding has <strong>two</strong> turns, with one complete
+turn&nbsp;on&nbsp;each side of the center tap, then it will
+work fine too in class AB or class B! But many circuit designers (or
+should I rather say "circuit copiers"?) seem to love the conventional
+construction style of this transformer, and copy it without hesitation
+nor any understanding of its behavior.
+<p>Not all is lost. It's possible, and has actually been quite usual
+in&nbsp;real world radios for many years, to make a small&nbsp;addition to
+this circuit, that will solve the problem:</p>
+
+
+
+
+<p align="center"><img src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/fig4.gif" border="0" height="159" hspace="8" vspace="8" width="256">
+</p>
+
+
+
+
+<p>T2 is a relatively small ferrite toroid, on which a few
+bifiliar turns are wound. This is connected as&nbsp;a
+center-tapped&nbsp;choke, with its two sides being very tightly
+coupled, thanks to the bifiliar winding style. The amplifier is fed
+through this device, instead of using the incorrectly implemented
+"center tap" of&nbsp;T1. T2 is often considered to be just
+a&nbsp;DC feed choke in the literature, and many authors who have
+never tought about this matter consider it completely optional, but in
+fact in a circuit like this it's not optional at all, and its true role
+is quite a bit more involved! </p>
+
+
+
+
+<p>Let's analize what happens:&nbsp;When Q1 conducts at the
+peak of its semicycle, it will have 1.3V on its drain, making 12.5V
+between Vcc and its drain. That places 12.5V on one half of T2. Due to
+the tight coupling, that forces 25V to appear across the entire T2,
+making Q2's drain go up to 26.3V. The primaries&nbsp;of T1 will see
+a total of 25V, that will be transformed to 100V at the output,
+and&nbsp;the 50 ohm load will take a current of 2A. Since both
+primaries of T1 are conducting, we have a true 1:4 turns ratio, so the
+primary current is 8A. These 8A come from the power supply, flow
+through the lower half of T2, then through the primaries of T1 and from
+there through Q1 to ground. Since T2 is tightly coupled, the current
+through its lower half is compensated for by another equal current,
+another 8A, flowing from the power supply through the upper half of T2,
+also through Q1 and to ground.</p>
+
+
+
+
+<p>So we have the same current and voltage in the transistors and
+power supply as in the analysis for figure 1, and also the same power
+output and efficiency. The only practical effect of adding T2 is that
+we can now use a T1 built like the transformer in the photo, without
+any&nbsp;problems! In other words, T2 simply provides the true
+center tap that&nbsp;cannot exist on a transformer that uses two
+cores and only one primary turn!</p>
+
+
+
+
+<p>In this circuit it's a good idea to place a DC blocking
+capacitor in series with T1's primaries. If everything were perfectly
+balanced, that capacitor wouldn't be necessary, but things are hardly
+ever really well balanced. Even a small net DC could saturate T2, since
+this choke is usually wound with several turns on a small core.</p>
+
+
+
+<p><img style="border: 1px solid ; width: 441px; height: 297px; float: right;" alt="" src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/ampCorrectNoFB.png" hspace="8" vspace="3">Do
+you want to see what difference this bifiliar feed choke makes?
+&nbsp;Well, just look at this image! It's the exact same test amplifier
+that produced the horrible waveforms above, with the same drive, the
+same bias - but with a bifiliar feed choke added. <br>
+
+
+
+</p>
+
+
+
+Much better, right? &nbsp;This are the waveforms one would expect: The
+output is a reasonably clean sine wave, and the drain waveform is also
+a reasonably clean sine wave, centered on the supply voltage.<br>
+
+
+
+<br>
+
+
+
+The exact same results are obtained without the bifiliar choke, using
+the output transformer's center tap, as long as the&nbsp;transformer
+has correct coupling between both halves of the primary. That is, if
+the transformer has one single magnetic loop, or if the primary
+consists of at least two turns, that is, at least one complete turn for
+each side of the primary, through all magnetic loops the core has.<br>
+
+
+
+&nbsp;<br>
+
+
+
+Note that this image shows the results without any negative feedback! <br clear="all">
+
+
+
+<p><img style="border: 1px solid ; width: 440px; height: 297px; float: left;" alt="" src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/ampCorrectWithFB.png" hspace="8" vspace="3">We
+can of course add negative feedback to this circuit too. The result is
+lower gain and better linearity, but without any fundamental effect on
+the circuit's operation.</p>
+
+
+
+<p> By the way, when you have more drive power available than&nbsp;you
+need to drive your transistors, the most stupid thing you could do is
+wasting that power in an attenuator! Instead it's much better to reduce
+the amplifier's gain by increasing its negative feedback, because that
+will make good use of the excess drive power to improve the linearity
+of the amplifier! &nbsp;After all, in a Linear Amplifier you can never
+have too much linearity...<br clear="all">
+
+
+
+</p>
+
+
+
+
+
+<p>The technical literature contains a great&nbsp;many
+examples of schematics that contain the output transformer error
+addressed here. Authors
+copy from each other, without ever actually building the circuit and
+testing it. So they don't notice the mistake. Or they actually build
+the circuits, and consider themselves satisfied with 50% efficiency in
+class B, failing to understand that with a correct circuit
+configuration they could easily get 65% or better, and improved
+linearity too.</p>
+
+
+
+<p>And now that I have blown off enough steam on this issue, let's go on to the
+main part of this article!</p>
+
+
+
+
+<hr>
+<h2>MOSFETs for high power class AB linear amplifiers</h2>
+
+
+
+
+<p>If we want to build a high power HF amplifier, the selection
+of suitable transistors isn't very broad. Some jokers suggest to use
+the MRF154 or MRF157. At close to 1000 dollars a pair, they just can't
+be a popular choice. Many people prefer the MRF150 or similar ones,
+which are much smaller and equally old fashioned. Typically four pairs
+of these would be required, as a minimum. That makes for an
+increasingly complex amplifier.</p>
+
+
+
+
+<p> &nbsp;But there are other options. Quite recently a few
+other manufacturers have come out with relatively high power MOSFETs
+rated for linear amplifier service at frequencies to 30MHz and beyond.
+The ARF1500 series, and the IxysRF devices, are good examples. These
+transistors are less expensive than the venerable and rather antique
+Motorola/Macom ones, but still their cost is significant. A typical ham
+building an amplifier will inevitably worry about burning out a set or
+two of transistors, before curing any infant maladies of his pet
+project. If the transistors cost a few bucks, that's no problem. But if
+each little cloud of smoke you draw costs you 2000 dollars for a quad
+of MRF154 transistors, it might make&nbsp;you think twice, at
+least, before embarking on the project! It doesn't make <strong>me</strong>
+think twice, anyway: That price is too high, period! It doesn't even
+deserve a second thought.</p>
+
+
+
+
+<p>I have intensely thought about the IxysRF transistors, such as
+the IXZ210N50L. They have lots of things in their favor: They were
+designed specifically for linear amplifier use. Their power
+capabilities would allow making a legal-limit amplifier with reasonably
+few devices. Their physical shape lends itself well to simple
+construction with low stray reactances. And their cost, according to
+advertised&nbsp;&nbsp;prices, might be no more than 300 dollars
+for a full set that&nbsp;produces 1500W output. I have only two
+hassles with them:&nbsp;One is that they seem pretty unique, so
+that if IxysRF decides to pull them, there would be no way in the world
+for anyone to copy my design, nor for me to repair it, should the
+transistors ever fail. And the other is that these devices seem to be
+mostly vaporware! I haven't been able to find any distributor who would
+actually be able and willing to sell me a few. I wonder if these
+transistors are actually in production, or if they are some sort of
+phantom.</p>
+
+
+
+
+<p>The ARF devices look worthwhile too, but they too are not easy
+to find, and they are more expensive. Also their characteristics seem
+to be a little less attractive than the Ixys ones, for example they
+have higher capacitances for a given set of conditions.</p>
+
+
+
+
+<p>I have spent lots of time thinking about the use of plain
+common power switching MOSFETs for high power linear amplifier use.
+These are widely available, in countless different specs and shapes and
+colors and flavors, and they are very inexpensive. New and better ones
+show up all the time. Many hams have&nbsp;successfully used small
+switching MOSFETs like the IRF510 for linear RF
+amplification.&nbsp;So one might be tempted to investigate the
+differences between linear RF MOSFETs, and switching MOSFETs.</p>
+
+
+
+
+<p>The differences are in fact many. Some of them are related to
+the "RF" factor, and others are related to the "linear" factor. Let's
+see:</p>
+
+
+
+
+<p>Switching MOSFETs are optimized to have the lowest possible
+resistance when on, and the highest possible one when off. And they
+should go from off to on, and back, as quickly as possible. That's
+about all there is to it. Linear RF MOSFETs instead don't need to have
+very low ON resistance, because they will operate in their linear
+range, not in saturation, and a lower ON resistance would only
+marginally increase their efficiency. Instead they need to have the
+absolutely lowest possible internal capacitances, because these are
+always too high in MOSFETs and cause lots of trouble when operating at
+RF. So switching MOSFETs will have a dense gate structure, while RF
+MOSFETs will have a more open one.</p>
+
+
+
+
+<p>RF MOSFETs don't need to switch quickly, and it's not even
+desirable for them to do so! It's better to be able to slowly and
+smoothly control the current. For that reason RF MOSFETs have much
+lower transconductance than switching ones. This is a side effect of
+the lower gate density too, so it goes hand-in-hand with lower
+capacitances.</p>
+
+
+
+
+<p>It lies in the nature of MOSFETs&nbsp;&nbsp;that their
+ON resistance has a positive temperature coefficient. If two MOSFET are
+in parallel, and one happens to take more current than the other, it
+will raise its resistance and offset that effect. This has given rise
+to the fame that MOSFETs can be paralleled without any current sharing
+devices. For the same reason, the current tends to distribute evenly
+over the surface of a MOSFET chip. Some people forget, though, that
+this mechanism of current distribution works only while the MOSFET is
+in ON state, that is, in saturation! It does not work while the
+transistor is in its linear range, be it because it's in the middle of
+a switching process, or because it is used in linear amplifier service.
+Switching MOSFETs placed in parallel are usually fitted with
+independent series resistors at their gates, which assures adequate
+sharing of the switching load. But in linear service this doesn't work
+well enough.</p>
+
+
+
+
+<p>While a MOSFET is&nbsp;in its linear range, its ON
+resistance (the one that has the convenient positive temperature
+coefficient) is irrelevant. Instead the current is controlled by the
+device's transconductance. And unfortunately in many MOSFETs the
+temperature variation of the transconductance plays against us, over
+most of the device's current range, and usually over ALL of the range
+in which it will ever be used while in linear service! In practice this
+not only means that switching MOSFETs running in parallel while in
+linear service will have severe load sharing problems, but also that
+a&nbsp;single switching MOSFET run in linear service can have load
+sharing problems across its surface, leading to hotspotting and
+destruction!</p>
+
+
+
+
+<p>For this reason, MOSFETs designed for linear service
+(regardless of whether it's DC, audio or RF) need to have an internally
+ballasted construction. That means, there must be enough resistance
+built in, distributed across the device's surface, to evenly spread out
+the current. </p>
+
+
+
+
+<p> Unfortunately MOSFETs for linear service&nbsp;have a very
+small market, compared to that for switching MOSFETs. As a consequence,
+there are few linear MOSFETs available, and they are way more expensive
+than their switching cousins.</p>
+
+
+
+
+<p>Another difference is in the encapsulation. RF MOSFETs come
+in&nbsp;packages that have very low lead inductance, specially for
+the source leads. Normal power switching MOSFETs instead
+come&nbsp;in plain conventional packages, that have much higher
+inductances. Also with RF MOSFETs it's almost a rule that the device
+either has internal insulation from the heatsink mounting surface, or
+has the source connected to the mounting surface, while with
+switching&nbsp;MOSFETs that's rather an exception, with the usual
+configuration being the drain connected to the mounting surface. But
+internal insulation is very useful in RF applications, almost essential
+in some cases.</p>
+
+
+
+
+<p>So, can switching type MOSFETs be used in RF linear amplifers?
+Or rather, does it make sense to even consider using them?</p>
+
+
+
+
+<p>Simple answer: An MRF154 costs 450 dollars. A switching MOSFET
+having the same power dissipation capability, with better voltage and
+current ratings, costs 15 dollars. There ought to be a way to make it
+work, don't you think?<br>
+
+
+
+
+</p>
+
+
+
+
+<p>Let's look at some basic specs for some transistors. First, I
+would like to compare the&nbsp;MRF157 linear RF MOSFET o
+the&nbsp;IXFX180N25T switching MOSFET. I chose the MRF157 simply
+because it's well known and available, and the other one I chose
+without much thinking or any selecting, looking for one that would have
+about the same power dissipation and have a balanced set of other
+features.</p>
+
+
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="600">
+
+
+
+
+  <tbody>
+
+
+
+
+    <tr>
+
+
+
+
+      <td></td>
+
+
+
+
+      <td>MRF157</td>
+
+
+
+
+      <td>IXFX180N25T</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Vmax</td>
+
+
+
+
+      <td>125 V</td>
+
+
+
+
+      <td>250 V</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Imax</td>
+
+
+
+
+      <td>60 A</td>
+
+
+
+
+      <td>160 A</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Pmax</td>
+
+
+
+
+      <td>1350 W</td>
+
+
+
+
+      <td>1390 W</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>RDSon</td>
+
+
+
+
+      <td>75 milliohm</td>
+
+
+
+
+      <td>12.9 milliohm</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Transconductance</td>
+
+
+
+
+      <td>24 S</td>
+
+
+
+
+      <td>160 S</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cin</td>
+
+
+
+
+      <td>1800 pF</td>
+
+
+
+
+      <td>2050 pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cout</td>
+
+
+
+
+      <td>750 pF</td>
+
+
+
+
+      <td>158 pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Creverse</td>
+
+
+
+
+      <td>75 pF</td>
+
+
+
+
+      <td>28 pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Case</td>
+
+
+
+
+      <td>ceramic/stripline</td>
+
+
+
+
+      <td>plastic/leads</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Insulation</td>
+
+
+
+
+      <td>No (source to tab)</td>
+
+
+
+
+      <td>No (drain to tab)</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cost</td>
+
+
+
+
+      <td> US$ 400</td>
+
+
+
+
+      <td> US$ 15</td>
+
+
+
+
+    </tr>
+
+
+
+
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+</p>
+
+
+
+
+<p> This table makes switching transistors like this Ixys very,
+very appealing! Don't you think? At essentially the same power
+dissipation capability, it can work at twice the voltage, almost three
+times the current, has almost six times better&nbsp;ON resistance,
+more than six times higher transconductance (gain), only slightly
+higher input capacitance (which is far outweighted by the higher
+transconductance requiring a lower drive
+voltage),&nbsp;far&nbsp;lower output&nbsp;and reverse
+transfer capacitances, and it costs&nbsp;27 times less money! For
+these big advantages one could accept the less than optimal casing,
+right?</p>
+
+
+
+
+<p>But we have to look deeper than just these basic specs. First,
+the
+problem with the case.&nbsp;An RF transistor like the MRF157 can be
+bolted&nbsp;directly to the heatsink, and the connections are
+brought
+out to broad&nbsp;strips. That results in only a few nanohenries of
+total stray inductance. The switching transistor instead is housed in a
+plastic package having leads, that internally connect to the silicon
+chip by probably only a few bonding wires. The stray inductance could
+easily be 10 times higher than for the RF transistor case.
+If&nbsp;we
+run the transistor from an&nbsp;80V&nbsp;supply, then the peak
+current
+will around 50A. If we happen to get 13 nH in the source lead, as
+suggested by some data sheets,&nbsp; then on the 10 meter band we
+get
+an inductive&nbsp;reactance of about 2.4 Ohm. So
+the&nbsp;source lead
+will cause a voltage drop of 120V peak! Clearly, this
+cannot&nbsp;work
+at all! Even just 3nH of stray inductance in the source lead would
+still be too much! The MRF157 instead, using its mounting surface as
+source connection, probably has a source inductance of less than 1 nH,
+so it doesn't have too bad problems in this area, as long as the
+circuit layout and construction is good.</p>
+
+
+
+
+<p> Also, look that this switching transistor has the drain
+connected to the heat sink. Unless you use a pretty complicate circuit
+to place the drains at ground level, you will either need an
+electrically&nbsp;floating heat sink, which is problematic at RF,
+or you need to insulate the transistor from the heat sink. If you do
+so, the additional thermal resistance will&nbsp;limit this
+transistor to a much lower power dissipation than the MRF157 can work
+at.</p>
+
+
+
+
+<p>So, the silly leaded plastic package seems to be
+the&nbsp;Achilles heel of this otherwise nice transistor!</p>
+
+
+
+
+<p>But not only. We have to look at the other specs, and then
+figure out some things. First some good news: According to the data
+sheet, this switching transistor's transconductance decreases with
+temperature. That's nice, because it should make this transistor
+operate&nbsp;in linear mode without hotspotting! </p>
+
+
+
+
+<p>But would that really work well? Its transconductance is very
+high. You would need less than half a volt of RF at the gate to fully
+drive this transistor. At such high gain, it's likely that the
+linearity will be pretty poor. That means heavy splatter all over the
+band and beyond! It might be possible to linearize the amplifier well
+enough by using negative feedback, but probably not as easily as it is
+with transistors designed for linear service. And keeping the idling
+current constant enough, when the transconductance is that high, is
+another problem on its own!</p>
+
+
+
+
+<p>Other doubts arise regarding the propagation time along the
+gate structure. MOSFETs that were not designed for RF use might simply
+be too slow in this regard. So one end of the MOSFET chip might already
+be finishing conduction, while the other end is just about starting it!
+The transistor will be working out of step with itself if that happens.
+Maybe it doesn't happen, but when a transistor isn't specified for the
+kind of service one will put it in, one can only guess, hope, try and
+see!</p>
+
+
+
+
+<p>Anyway, with the problems of the leaded plastic case, using
+this transistor for high power RF is a lost cause, so we don't need to
+even test it.</p>
+
+
+
+
+<p>Does this mean that we cannot use switching transistors at all
+for RF linear amplifiers? Well, not necessarily! Two ideas come to
+mind, which can alleviate the problem of excessive lead inductance.</p>
+
+
+
+
+<p> First is using the highest possible supply voltage, along
+with high voltage MOSFETs. This will reduce the current, and thus the
+voltage drop over the source lead inductance, which is essentially
+fixed for a given type of encapsulation. The other technique is using
+many small MOSFETs instead of a few large ones. Smaller cases have
+lower inductances, and more devices in parallel have far lower total
+combined inductance! Also this paralleling of many devices eases the
+thermal management. It's far easier to adequately cool many small
+devices dissipating a small amount of power each, than cooling just two
+somewhat bigger devices which&nbsp;produce as much&nbsp;heat
+as&nbsp;the kitchen range!</p>
+
+
+
+
+<p>On the other hand, paralleling MOSFETs introduces problems of
+load sharing, and phase alignment between them. I do not particularly
+like to use 32 small MOSFETs in 16&nbsp;separate push-pull
+amplifier modules, and then interconnect them using splitters,
+combiners, and a ratsnest of coax cables of matched lengths. It works,
+but it's not elegant, and too expensive. Instead I'm looking for a way
+to build a single push-pull stage, with many small MOSFETs on each
+side, that still&nbsp;works well enough. It could be by paralleling
+the drains and using separate tiny ferrite loaded transformers for the
+gate drive of each MOSFET, with the primaries of all of
+them&nbsp;driven in parallel&nbsp;or perhaps in series. The
+assembly would have to be compact, though, to avoid excessive phasing
+problems, and that runs against easy heat spreading.</p>
+
+
+
+
+<p>Let's look at some more switching MOSFETs in TO-247 cases,
+rated at 1 kV, to see how the scenery looks for high voltage amplifiers
+with many MOSFETs. I will just choose a few available devices pretty
+much at random:</p>
+
+
+
+
+<p>&nbsp;
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="600">
+
+
+
+
+  <tbody>
+
+
+
+
+    <tr>
+
+
+
+
+      <td></td>
+
+
+
+
+      <td>APT7F100B</td>
+
+
+
+
+      <td>STW11NK100Z</td>
+
+
+
+
+      <td>IXFH12N100F</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Vmax</td>
+
+
+
+
+      <td>1000&nbsp;V</td>
+
+
+
+
+      <td>1000 V</td>
+
+
+
+
+      <td>1000&nbsp;V</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Imax</td>
+
+
+
+
+      <td>7&nbsp;A</td>
+
+
+
+
+      <td>8.3 A</td>
+
+
+
+
+      <td>12&nbsp;A</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Pmax</td>
+
+
+
+
+      <td>290&nbsp;W</td>
+
+
+
+
+      <td>230 W</td>
+
+
+
+
+      <td>300&nbsp;W</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>RDSon</td>
+
+
+
+
+      <td>2000&nbsp;milliohm</td>
+
+
+
+
+      <td>1100 milliohm</td>
+
+
+
+
+      <td>1050&nbsp;milliohm</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Transconductance</td>
+
+
+
+
+      <td>7.5&nbsp;S</td>
+
+
+
+
+      <td>9 S</td>
+
+
+
+
+      <td>12&nbsp;S</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cin</td>
+
+
+
+
+      <td>1800&nbsp;pF</td>
+
+
+
+
+      <td>3500 pF</td>
+
+
+
+
+      <td>2700&nbsp;pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cout</td>
+
+
+
+
+      <td>158&nbsp;pF</td>
+
+
+
+
+      <td>270 pF</td>
+
+
+
+
+      <td>305&nbsp;pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Creverse</td>
+
+
+
+
+      <td>25&nbsp;pF</td>
+
+
+
+
+      <td>60 pF</td>
+
+
+
+
+      <td>93&nbsp;pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Case</td>
+
+
+
+
+      <td>plastic/leads</td>
+
+
+
+
+      <td>plastic/leads</td>
+
+
+
+
+      <td>plastic/leads</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Insulation</td>
+
+
+
+
+      <td>No (drain to tab)</td>
+
+
+
+
+      <td>No (drain to tab)</td>
+
+
+
+
+      <td>No (drain to tab)</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cost</td>
+
+
+
+
+      <td> US$ 9</td>
+
+
+
+
+      <td> US$ 6</td>
+
+
+
+
+      <td> US$ 8</td>
+
+
+
+
+    </tr>
+
+
+
+
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+</p>
+
+
+
+
+<p>&nbsp;</p>
+
+
+
+
+<p>The idea is to run such transistors from the rectified and
+filtered mains, at a DC voltage of roughly 310V. In real world
+conditions these devices should be able to dissipate 100 to 150
+watts,&nbsp;so that in a class AB amplifier each would run at a
+peak current of about 2A, average of about 0.7A. Under these conditions
+the source lead inductance of a TO-247 encapsulation causes only about
+5V of peak voltage drop on the 10 meter band, which can be
+handled&nbsp;by the drive circuit. The ON resistance is good to,
+and would cause very little loss under these
+conditions.&nbsp;&nbsp;</p>
+
+
+
+
+<p>But this is about where the beauty ends: Just look at the
+capacitances! Even taking the best of these three in this regard, we
+still get 25pF of reverse transfer capacitance. In a legal limit
+amplifier, we would need about six of these devices in parallel on each
+side. That makes 150pF of reverse transfer capacitance on each side.
+With a 600V swing on the drains, and this capacitance, Miller effect is
+a show killer! We are talking about six amperes of unwanted 90-degree
+phase shifted feedback current getting into the gates via the reverse
+transfer capacitance! Even if we make a drive circuit&nbsp;adapted
+to handle this, it's likely that the gate structures and connections
+won't like it very much. And the output capacitances are so high that
+we would end up with about 40 or more amperes of reactive RF current
+flowing in them! There is no way in the world to handle this in a
+broadband circuit. It would require a tuned tank circuit with a Q
+factor above 8 or so, much like in tube-based amplifiers.</p>
+
+
+
+
+<p>Clearly this won't work.</p>
+
+
+
+
+<p>Note how higher capacitance go hand in hand with lower ON
+resistance and higher transconductance. This is typical. For RF use
+we&nbsp;should look at MOSFETs having the lowest possible
+capacitances, transconductance, and thus the highest ON resistances in
+their class. For low frequency switching applications instead one would
+typically look mostly at getting the lowest&nbsp;ON resistance.</p>
+
+
+
+
+<p>Let's compare to a high voltage RF&nbsp;MOSFET:&nbsp;</p>
+
+
+
+
+<p>
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="600">
+
+
+
+
+  <tbody>
+
+
+
+
+    <tr>
+
+
+
+
+      <td></td>
+
+
+
+
+      <td>ARF1505</td>
+
+
+
+
+      <td>IXFB30N120P</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Vmax</td>
+
+
+
+
+      <td>1200&nbsp;V</td>
+
+
+
+
+      <td>1200&nbsp;V</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Imax</td>
+
+
+
+
+      <td>25&nbsp;A</td>
+
+
+
+
+      <td>30 A</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Pmax</td>
+
+
+
+
+      <td>1500&nbsp;W</td>
+
+
+
+
+      <td>1250&nbsp;W</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>RDSon</td>
+
+
+
+
+      <td>920&nbsp;milliohm</td>
+
+
+
+
+      <td>350&nbsp;milliohm</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Transconductance</td>
+
+
+
+
+      <td>10&nbsp;S</td>
+
+
+
+
+      <td>22&nbsp;S</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cin</td>
+
+
+
+
+      <td>5400&nbsp;pF</td>
+
+
+
+
+      <td>22500&nbsp;pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cout</td>
+
+
+
+
+      <td>300&nbsp;pF</td>
+
+
+
+
+      <td>950&nbsp;pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Creverse</td>
+
+
+
+
+      <td>125&nbsp;pF</td>
+
+
+
+
+      <td>28&nbsp;pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Case</td>
+
+
+
+
+      <td>ceramic/stripline</td>
+
+
+
+
+      <td>plastic/leads</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Insulation</td>
+
+
+
+
+      <td> Yes</td>
+
+
+
+
+      <td>No (drain to tab)</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cost</td>
+
+
+
+
+      <td> US$ 270</td>
+
+
+
+
+      <td> US$ 35</td>
+
+
+
+
+    </tr>
+
+
+
+
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+</p>
+
+
+
+
+<p>As you can see, the main difference is marked by lower input
+and output capacitances, higher ON resistance, and lower
+transconductance, all of these indicating a lighter gate structure in
+the RF transistor. The much higher reverse transfer capacitance is an
+anomaly. I wonder if these values simply arose from&nbsp;different
+testing methodology used for these two transistors, causing the IX
+transistor to show less reverse transfer capacitance in exchange for
+very high input capacitance. </p>
+
+
+
+
+<p>And of course the other very important difference&nbsp;is
+the&nbsp;encapsulation. The switching transistor comes in a leaded
+plastic case with no insulation, while the RF transistor comes in an
+insulated ceramic case with stripline terminals. Whether the case is
+made of plastic or ceramic is not such a dramatic difference, but the
+internal insulation and the stripline terminals both make a huge
+difference. In practical terms, the ARF might be able to dissipate 700
+or 800 watts in real world conditions, while the IX wil be limited to
+maybe 150 watts after adding the required insulation! And the low
+inductance stripline terminals allow the RF transistor to have a low
+voltage drop at high RF current which is far better than what the
+switching transistor could ever achieve. </p>
+
+
+
+
+<p> It seems clear that for RF amplifiers we should use
+transistors made for that application, and not press switching
+transistors into that service. The problem is just that RF transistors
+are&nbsp;much more expensive, and often hard to get. When I asked a
+somewhat obscure distributor for a quotation, he asked how many
+thousand transistors&nbsp;I would purchase per month. When I said I
+needed just a few&nbsp;of them, one time only, he never again
+replied. The switching transistors instead can be ordered
+from&nbsp;many&nbsp;places, hassle-free, even in small
+quantities.</p>
+
+
+
+
+<p>Do you like my comparison tables? Let's see one more,
+comparing three generations of RF power MOSFETs. One from Motorola
+dating to the 1970s, a much newer one from APT (now Microsemi), and the
+even newer one from IxysRF:</p>
+
+
+
+
+<p>&nbsp;</p>
+
+
+
+
+<p>
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="600">
+
+
+
+
+  <tbody>
+
+
+
+
+    <tr>
+
+
+
+
+      <td></td>
+
+
+
+
+      <td>MRF154</td>
+
+
+
+
+      <td>ARF1500</td>
+
+
+
+
+      <td>IXZ210N50L</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Vmax</td>
+
+
+
+
+      <td>125 V</td>
+
+
+
+
+      <td>
+      
+      
+      
+      <p>500 V</p>
+
+
+
+
+      </td>
+
+
+
+
+      <td>500 V</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Imax</td>
+
+
+
+
+      <td>60 A</td>
+
+
+
+
+      <td>60 A</td>
+
+
+
+
+      <td>10&nbsp;A</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Pmax</td>
+
+
+
+
+      <td>1350 W</td>
+
+
+
+
+      <td>1500 W</td>
+
+
+
+
+      <td>470 W</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>RDSon</td>
+
+
+
+
+      <td>75 milliohm</td>
+
+
+
+
+      <td>187 milliohm</td>
+
+
+
+
+      <td>1000 milliohm</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Transconductance</td>
+
+
+
+
+      <td>24 S</td>
+
+
+
+
+      <td>13.5 S</td>
+
+
+
+
+      <td>3.8&nbsp;S</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cin</td>
+
+
+
+
+      <td>1800 pF</td>
+
+
+
+
+      <td>3920 pF</td>
+
+
+
+
+      <td>622&nbsp;pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cout</td>
+
+
+
+
+      <td>750 pF</td>
+
+
+
+
+      <td>350 pF</td>
+
+
+
+
+      <td>77&nbsp;pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Creverse</td>
+
+
+
+
+      <td>75 pF</td>
+
+
+
+
+      <td>100 pF</td>
+
+
+
+
+      <td>12&nbsp;pF</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Case</td>
+
+
+
+
+      <td>ceramic/stripline</td>
+
+
+
+
+      <td>ceramic/stripline</td>
+
+
+
+
+      <td>plastic/stripline</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Insulation</td>
+
+
+
+
+      <td>No (source to tab)</td>
+
+
+
+
+      <td>Yes</td>
+
+
+
+
+      <td> Yes</td>
+
+
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>Cost</td>
+
+
+
+
+      <td> US$ 400</td>
+
+
+
+
+      <td> US$ 250</td>
+
+
+
+
+      <td> US$ 35</td>
+
+
+
+
+    </tr>
+
+
+
+
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+</p>
+
+
+
+
+<p>The MRF needs to be powered from about 50V, while the ARF can
+run from anything between 50 and about 120V, having wide tolerance
+margins. The Ixys is much smaller - about three or four of these would
+make up one of the ARF or MRF, but with better capacitance ratings,
+lower price and better heat spreading - and higher complexity,
+unfortunately.</p>
+
+
+
+
+<p>Pricewise, clearly the old MRF is too expensive to be
+worth&nbsp;considering.&nbsp;The ARF is better, but still
+expensive. The price stated for the Ixys is a bit of hearsay, since the
+distributor stating that price is out of stock and can't supply them,
+but if it is true, four of these Ixys transistors would be an
+attractive alternative to one&nbsp;<br>
+
+of the others.</p>
+
+<span style="font-weight: bold;"><span style="font-style: italic;">Update (2016): &nbsp;</span></span><span style="font-style: italic;">In
+recent years a variety of high power LDMOSFETs have become available,
+some of these offering output power levels well in excess of 1kW from a
+single Gemini device. These transistors tend to have extremely good
+capabilities at higher frequencies, so much so that devices intended
+purely for HF use are scarce, while most extend their operational range
+at least to VHF, if not UHF. These LDMOSFETs can be used to make high
+power conventional class AB amplifiers, at a device cost well below
+that of the older generation of FETs. The difficulties are mainly
+related to cooling. If a thermal power close to a kilowatt needs to be
+extracted from a device measuring 1×3cm, which needs to be kept below
+60°C or so if we want to keep the silicon inside below 200°C and
+survive, then we are facing a formidable thermal design task! </span><br>
+
+<br style="font-style: italic;">
+
+<span style="font-style: italic;">Other trouble with these UHF
+transistors is their tendency to self-oscillate. Somebody developing an
+HF amplifier might not even notice an instability at 500MHz! But it can
+cause severe interference, or kill the transistors.</span><br>
+
+<br style="font-style: italic;">
+
+<span style="font-style: italic;">At the same time, better switching
+transistors are becoming available, driven by the relentless push for
+higher switching frequencies in power supplies. There are now
+inexpensive TO-220 cased MOSFETs that will readily operate to 30MHz in
+broadband circuits, and to at least 60MHz in tuned ones. In the years
+since writing this article, I have made experiments with several such
+MOSFETs.&nbsp; So far the best performer I tried is the IXTP1R6N50P. At
+a cost of slightly above $1, it can be used at 30 to 40W output power
+per device, with good performance through 22MHz, and acceptable at
+30MHz. The AOT3N50 is even cheaper and provides more power per device,
+but only to 15MHz or so.&nbsp; Arno Weidemann, DL9AH, published a high
+power amplifier using the older IRF710 MOSFETs, which are in the same
+voltage, current and power class as these. I tried them too, and they
+do work acceptably, but the IXTP1R6N50P is superior. Newer and further
+improved MOSFETs are showing up frequently. In any case, the rule for
+this kind of amplifiers is: Use many low power, mid/high voltage FETs
+in parallel, instead of a smaller number of larger devices.</span>&nbsp;<br style="font-style: italic;">
+
+<br>
+
+ A basic question is what supply voltage to use. The old
+tradition of the 1970's, apparently established by Motorola, is 50V.
+That requires a power supply capable of delivering 60A, and results in
+a drain-to-drain load resistance of only 3 Ohm, with all the resulting
+problems. Some newer MOSFETs are designed to work from 50V
+up,&nbsp;through 80V, 100V, and sometimes more, all the way to
+about 300V. This generally simplifies&nbsp;the power supply and the
+impedance matching, as long as the output capacitance doesn't get in
+the way. Data sheets, application notes, and comments from people who
+have tried, suggest that high supply voltages are troublesome if the
+amplifier has to work in linear mode. It's very hard to get reliable,
+intelligent information about these problems. It seems that modern
+MOSFETs are fine for 80V or so, maybe 100V, but not much higher, in
+linear RF service. This already results in much more comfortable
+impedances, but we still require a fully fledged power supply, either
+using a big, heavy, expensive transformer, or using rather high power
+switching components. A linear amplifier powered straight from the
+rectified and filtered&nbsp;mains seems to be an elusive goal.
+Countries using 117V power lines have much better chances in this
+regard than those using 230V, even if powering a legal limit amplifier
+from a 117V line poses some problems of its own. Running an amplifier
+based on a pair of ARF1505 straight from 310V DC might be problematic
+in many ways, only one of&nbsp;the problems&nbsp;being the
+output capacitance of 300pF, which at 30MHz has a reactance almost 4
+times lower than the load resistance. That would be hard or impossible
+to handle with a true broadband circuit, requiring instead some sort of
+resonant band-switched circuit.
+
+
+<p> &nbsp;</p>
+
+
+
+
+<h2>Is this&nbsp;an amplifier or a stove?&nbsp;</h2>
+
+
+
+
+<p>Why are hams still willing to use power amplifiers that have
+an efficiency lower than 50%? Broadcasters have long ago
+stopped&nbsp;using them! A broadcast transmitter that doesn't have
+at least 80% efficiency has no market chances anymore, and many exceed
+90% efficiency. Energy is simply too expensive to waste it in heat
+while producing an RF signal! It's high time that hams would follow
+this trend. We should be <strong>leaders</strong> in radio
+technology, not late adopters, let alone naysayers!</p>
+
+
+
+
+<p> A high efficiency amplifier would have many advantages:
+Smaller, lighter, possibly cheaper, lower energy consumption, longer
+component lifespan and reliability, lower or no fan noise, among
+others. And if the amplifier uses a switching scheme instead of
+conventional linear amplification, switching type RF MOSFETs can be
+used, which are more plentiful and less expensive than linear types,
+while at the same time all concerns about IMD and linearity move out of
+the amplifier block proper, and into the control circuit, which works
+at&nbsp;low power and so is far easier to
+manage.&nbsp;&nbsp;</p>
+
+
+
+
+<p>&nbsp;I'm very fond of the idea of making a highly
+efficient legal limit amplifier for the HF bands. Of course it's quite
+a bit more difficult to make a broadband 1.8-30 MHz linear amplifier
+for SSB in switching technology, than it is to make a switching AM
+transmitter for the 0.5-1.6 MHz broadcast band, or even for the
+shortwave broadcast bands. Both require amplitude linearity, but in
+addition the SSB amp requires phase linearity, and the
+frequency&nbsp;is higher.</p>
+
+
+
+
+<h2>Modulating the power supply</h2>
+
+
+
+
+<p>A relatively simple way of improving the efficiency of an
+amplifier is to modulate the power supply so that the amplifier gets
+just enough voltage&nbsp;for the power level it has to produce at
+any given instant. A good class AB amplifier is capable of producing
+about 65% efficiency at full power, but this decays all the way to
+zero, as the power level is lowered! So, a&nbsp;basic conventional
+class AB amplifier will have an overall efficiency of maybe between 20
+and 45%, depending on the type of&nbsp;modulation, compression
+level, and so on. If we control the supply voltage, the amplifier could
+run at 100% of its possible output power (at the given supply voltage) <strong>all
+the time!</strong> That would allow to get a 65% overall
+efficiency, saving about half of the heat produced.</p>
+
+
+
+
+<p>To do this, all that's needed is to power the amplifier from a
+switching power supply that&nbsp;can accept fast enough modulation,
+and one has to provide some sort of detector that produces
+the&nbsp;modulation signal. </p>
+
+
+
+
+<p>The power supply needs to have a certain minimum voltage set,
+because MOSFETs sharply increase their capacitances when the voltage
+gets very low, and that would seriously impair&nbsp;linearity. But
+still, a class AB amplifier that has a switching power supply could be
+improved at very low additional cost, by adding this supply voltage
+modulation. The&nbsp;improvement in efficiency is not dramatic
+enough to do away with heatsinks and fans, but it's enough to warrant
+the small additional complexity. The savings in transistor ratings and
+heatsinking will probably pay for the additional circuitry, with some
+surplus, and the energy savings will be a freeby.</p>
+
+
+
+
+<h2>Envelope elimination and
+restoration&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+
+
+
+
+<p>It is possible to split the driving signal into phase and
+amplitude components, amplify each separately, and recombine them at
+the output. In practice this looks like putting an amplitude detector
+at the input and using its output to modulate the power supply, while
+at the same time squaring up the drive signal and use it to drive a
+high efficiency, switching type amplifier, typically in class E or
+class F to achieve an efficiency beyond 90%. The output amplitude of
+this amplifier will follow the supply voltage, and the phase will be
+that of the driving signal. We get linear amplification with an overall
+efficiency (mains connector to RF out connector) of close to 80%. It
+almost looks too good to be true - and indeed there are serious
+problems in this approach!</p>
+
+
+
+
+<p>One problem is that the RF signal path through the amplifier,
+and the modulation path through the switching power supply, typically
+have very different delay times. But at the output they need to arrive
+at the same time! So, some delaying of the RF signal is needed.</p>
+
+
+
+
+<p>Worse is the problem caused by the capacitances within the
+MOSFETs. They are pretty large, and they change drastically when the
+supply voltage gets low. In low amplitude places of the waveform the
+power supply voltage gets very low, and the capacitances can get ten
+times as high as at normal voltages. Not only does this detune the
+output network, but also it totally wrecks the phase response! At low
+amplitude levels, the drive signal feedthrough gets larger than the
+amplified signal - and the drive signal has opposite phase! This is in
+addition to the phase modulation caused directly by the changing
+capacitances.</p>
+
+
+
+
+<p>In 2006 I built a small scale model of such an amplifier. I
+believe more in practical experiment than in mathematical analysis,
+specially because I'm more handy with the soldering iron and the
+oscilloscope, than with advanced mathematics and MathCAD. The results I
+got were beautifully high efficiency, using common switching MOSFETs on
+80 and 40 meters, but the linearity when transmitting voice in SSB was
+poor. The third order IMD products were down just&nbsp;18dB, and
+that was the best I ever got. That level of splatter is ideally suited
+for hams who want to make instant enemies on any band they fancy to
+pollute.</p>
+
+
+
+
+<p>One way to reduce this problem is to run the amplifier in EER
+mode only for the higher amplitude levels. For the lower amplitude
+parts of the signal, the power supply voltage would be clamped to a
+fixed value, high enough to avoid the worst phase shifting effects,
+and&nbsp;bias the amplifier into class AB. Saulo Quaggio, PY2KO,
+built such an amplifier and published it (QEX, July/August 2006). But
+he used tubes, avoiding the changing capacitances of MOSFETs! Even so,
+he operates his amplifier in class AB at low levels, and class F with
+EER only at the higher levels.</p>
+
+
+
+
+<p>Using MOSFETs, it should be possible to run such an amplifier
+in pure EER high efficiency mode, by&nbsp;modulating both the final
+stage and at least the driver to it, to avoid feedthrough of drive
+power, and then using configurable and programmable predistortion of
+the phase information, most likely using digital signal processing. But
+this approach&nbsp;is far too complex to use in a simple,
+inexpensive, homebrew ham radio linear amplifier, and anyway it is
+better suited to a self-contained transmitter than to an add-on
+amplifier.</p>
+
+
+
+
+<p>At this time, I don't see how to come up with a&nbsp; good
+implementation of EER for a&nbsp;ham radio linear amplifier, where
+the word "good" stands for "simple, inexpensive, with adequate
+performance".</p>
+
+
+
+
+<h2>Pulse width modulation</h2>
+
+
+
+
+<p>So I have changed my aproach to an efficient amplifier: My
+concept now revolves around pulse width modulation. But not in the way
+audio PWM amplifiers are made, which use a high frequency carrier
+signal onto which the audio is pulse-width-modulated, and then a simple
+low pass filter at the&nbsp;output that passes the audio but
+rejects the&nbsp;carrier. With audio you can do that, because
+MOSFETS can very easily switch at the frequencies no higher than 1MHz
+required by this approach. With an HF amplifier instead, the MOSFETs
+would have to switch efficiently <strong>at least</strong>
+in the high VHF range, and that's a lot to ask. So my concept instead
+has the MOSFETs switch at the actual transmitting
+frequency.&nbsp;For this to work in SSB, it has to be done
+preserving the phase modulation that is present on the drive signal,
+and without introducing any additional phase modulation.</p>
+
+
+
+
+<p>This is the&nbsp;block diagram of the amplifier I have in
+mind:</p>
+
+
+
+
+<p align="center"><img src="./Some thoughts on low cost, solid state, kilowatt-class HF linear amplifiers_files/fig5.gif" border="0" height="157" hspace="8" vspace="8" width="686">
+</p>
+
+
+
+
+<p> The input signal is passed through a limiter that generates
+essentially a square wave that has the same phase as the input (except
+for&nbsp;delays in the circuit). This in turn is passed through a
+simple integrator, which produces a triangle wave that has its peaks at
+the zero crossings of the square wave. That implies a 90 degree phase
+lag, but that's not a&nbsp;problem, because the lag is
+constant.&nbsp;&nbsp;&nbsp;</p>
+
+
+
+
+<p>This fixed amplitude triangle wave, that follows the phase
+modulation of the drive signal, is compared to an error signal,
+obtained from the comparison of the output amplitude to the input
+amplitude. A&nbsp;PWM signal results, the pulse lengths
+being&nbsp;adjusted to get the correct&nbsp;amplitude at the
+output, while&nbsp;the pulse position follows&nbsp;only the
+phase&nbsp;changes of the&nbsp;drive signal. In a practical
+implementation, the comparator will likely have to produce two output
+signals, to drive the two sides of a power amplifier, but a
+single-ended implementation is conceivable too. The&nbsp;power
+stage is a simple but very fast switching circuit. The band pass filter
+reconstructs the sine wave.</p>
+
+
+
+
+<p>The comparator cannot use much hysteresis, because that would
+result in nonlinearities at the low amplitude end, due to pulses
+dropping out entirely instead of getting narrower. Without hysteresis,
+it has to be a low noise comparator, to avoid as much as possible the
+chance of multiple pulses per semicycle. Maybe a very tiny amount of
+hysteresis could be used.</p>
+
+
+
+
+<p>At very low amplitudes, it's likely that pulses will start
+dropping out anyway. That creates subharmonics in the output signal,
+and this is &nbsp;the reason why we need a&nbsp;bandpass filter
+rather than a simple low pass filter. With the band pass filter in
+place, of sufficiently high Q, and thanks to the amplitude correction
+loop, linearity should remain decent even down to pretty small signals.
+But as the signal continues to shrink, eventually there won't be enough
+signal for the limiter to work on, and the system will fall apart.
+That's no problem though, as long as it happens at an amplitude that's
+so low that nobody cares - let's say, 60 or 70dB below the peak power.
+This should be easy to achieve. The detailed design could&nbsp;
+include a circuit that completely shuts off any output pulses below a
+certain&nbsp;drive amplitude, to prevent any nonsense from
+appearing at the output under such conditions.</p>
+
+
+
+
+<p>The amplitude loop needs to have a bandwidth large enough to
+pass all significant components of the envelope. In an SSB signal,
+these extend far beyond the audio bandwidth, since the envelope looks
+like a rectified audio signal, with sharp edges at the zero level. A
+bandwidth of 100kHz would be my first guess, but the scheme proposed
+could easily be implemented with an envelope loop bandwidth even
+broader than that - several hundred kHz or so. The lowest band in which
+the amplifier is supposed to operate is 1.8MHz, so that still gives
+enough frequency difference to properly separate the RF signal from
+envelope components.</p>
+
+
+
+
+<p>The power supply to the power stage doesn't need to be
+regulated, or even very well filtered. Any hum and voltage variations
+will be taken care of by the amplitude loop, compensating supply
+voltage variations by opposing changes in pulse width. The only
+constraints for supply voltage would be to have enough voltage at all
+times to be able to produce the desired&nbsp;peak amplitude, and
+not so much that the MOSFET capacitances become too much of a problem.</p>
+
+
+
+
+<p>All the small signal processing of this amplifier can be
+easily implemented. Probably it can be done even using audio-like
+methods, employing operational amplifiers! A wide range of pretty good
+RF op amps are available nowadays. The problem, though, lies in the
+power stage. Ideally this stage should switch very fast, compared to
+the RF signal period. That calls for switching times&nbsp;near one
+nanosecond, to operate well up to 30MHz! Up to a few ns might be
+acceptable, at the cost of reduced efficiency on the higher bands. Very
+fast&nbsp;RF switching MOSFETs are becoming available, along with
+suitable driver ICs, but still it's a real problem handling the
+MOSFET's capacitances when switching so fast. The bandpass filter
+following the MOSFETs must absolutely be designed in such a way that it
+absorbs these capacitances, and presents the proper load phase angles
+to the MOSFETs to achieve efficient operation. So we are talking class
+E or class F again, but with the added difficulty of having widely
+variable pulse lengths, instead of a nice steady square wave, as the
+source signal! I haven't analyzed this problem in depth yet, so at this
+moment I don't even know whether it's posible at all to solve it, or if
+some serious compromise would have to be reached. This point might well
+be the Achilles heel of this whole concept.</p>
+
+
+
+
+<p>It should be noted that as the pulse widths get very small at
+low amplitudes, any MOSFETs selected will no longer be able to switch
+fully on and off in such a&nbsp;short time. This&nbsp;is <strong>not</strong>
+a problem, really. Simply the amplifier will degrade from class E or F
+to unsaturated class C at low signal levels, reducing the efficiency
+somewhat. But since it happens only at the lowest amplitudes, the
+losses will be nearly negligible, and the loss of amplitude linearity
+in the power section should be very well corrected by the amplitude
+loop. The only real point to watch in this area is that we need the
+MOSFETs and their drivers to stay symmetric in their switch-on and
+switch-off performance! &nbsp;Otherwise a phase modulation would be
+introduced&nbsp;at amplitudes low enough to prevent the MOSFETs
+from fully saturating, and that would seriously degrade spectral
+purity, because it will happen at a power level that is still
+significant, specially on the higher bands, where the MOSFET switching
+time is a more significant portion of the total signal period. This
+symmetry can probably be obtained to a sufficient degree by
+manipulating the MOSFET drivers, or at most it might require some bias
+applied for that purpose.</p>
+
+
+
+
+<p>In any amplifier that separates the phase from the amplitude
+and recombines them at the output, like this one, it's important that
+the delays on the two signal paths match well enough.
+With&nbsp;supply-modulated EER amplifiers this is often a problem,
+because the delays of the amplitude signal through a switching power
+supply can be rather long. In this PWM concept, instead, the delay in
+the amplitude loop is much shorter. Maybe it doesn't even need to be
+compensated for, and if it does, that could be done using a rather
+modest delay line in the RF path.</p>
+
+<p></p>
+
+
+
+
+<h2>Linear class C
+</h2>
+
+Most people associate class C with "nonlinear, FM only" amplifiers. But
+MOSFET class-C amplifiers can be pretty well linearized by properly
+modulating the bias! The bias voltage would most likely come from a circuit
+comparing the output amplitude to the input amplitude. At idle
+condition, the bias voltage would be set for a very low idling current.
+With tiny signals the amplifier would operate in class A, but as the
+drive signal grows, it would move into class AB and on into class C, as
+the bias control circuit reduces the bias to keep the output
+proportional to the input despite the higher gain of FETs at higher
+signal levels. As the drive nears maximum, and the amplifier is driven
+into saturation, reducing its gain, the control circuit would
+compensate for that by increasing the bias again, so that at full
+output the amplifier operates in saturated class C, near saturated
+class B.<br>
+
+<br>
+
+The feedback circuit needs to have a relatively large bandwidth, to
+cleanly process SSB signals. For AM signals this requirement is far
+less stringent.&nbsp; <br>
+
+<h2>And a class ACE amplifier!</h2>
+
+This is my latest pet idea, as of 2016. &nbsp;It's the same idea
+expressed above, but designing the power stage as a class E amplifier.
+It would operate in class E at full power, going through class C over
+much of the dynamic range, entering class AB at low levels and class A
+at very low ones. Since "class AABCE" is too long, I love the idea of
+calling this a "class ACE" amplifier!<br>
+
+<br>
+
+This circuit can be developed around cheap switching MOSFETs, which
+work particularly well in class E circuits. Their large gate voltage
+range is very welcome, given that the gates need to survive the drive
+voltage plus the bias modulation, a condition that might carry
+LDMOSFETs out of their very limited safe gate voltage range. <br>
+
+<br>
+
+Class E amplifiers can't be broadband.&nbsp; A ham amplifier would
+either need a bandswitched, tuned output network, not unlike an
+old-fashioned tube amplifier,<br>
+
+or one class-E output network per band, switched&nbsp;by relays. The
+latter isn't at all too exotic, if you consider that present-day class
+AB solid state amplifiers anyway need a bank of relay-switched low-pass
+filters! Just replace the filters by class-E networks, and you are
+done! &nbsp;But note that this cannot be done easily enough when a high
+power amplifier is built around 50V devices, because the resulting
+drain impedance is far too low to be&nbsp;switched by relays. Instead
+by using plain cheap higher voltage MOSFETs, the drain impedance comes
+into a range that makes relay switching perfectly possible. &nbsp; <br>
+
+
+
+
+<hr>
+<br>
+
+<br>
+
+<h2>High efficiency, or conventional?</h2>
+
+
+
+
+
+
+
+<p>Reading about such&nbsp;complex concepts, you might ask why not
+simply continue building conventional, class AB linear amplifiers, and
+just put up with their low efficiency. And in fact, almost all (or
+perhaps all!) amateur radio equipment manufacturers are doing exactly
+that. The ham community by and large apparently doesn't care about
+efficiency, power saving, and the like. There are even some retrograde
+hams who judge the quality of any equipment by its weight - the
+heavier, the better they think it is! So, why bother?</p>
+
+
+
+
+<p>I will give you some true reasons why high efficiency
+amplifiers are a worthwhile goal. No, reducing
+your&nbsp;electricity bill really isn't the driving reason, as the
+savings will be quite small, except perhaps for really adept
+ragchewers.&nbsp;The reasons are rather like these:</p>
+
+
+
+
+<p>- <strong>Cost</strong>: A high efficiency
+amplifier produces very little heat. That means using fewer MOSFETs,
+saving cost. Also the heatsink and fans will be much smaller, and thus
+less costly. The same goes for all power supply components. Unregulated
+power supplies can be used with some of these strategies, further reducing cost. The&nbsp;box
+will be smaller - less money spent on it. At the same time, the
+additional parts needed&nbsp;for the rather extensive signal
+processing as compared to a conventional amplifier, cost very little,
+because these are all small signal parts. In the case of the PWM amplifier, the whole pack of two
+envelope detectors, error amplifier, limiter, integrator, and pulse
+width modulator, might fit easily on less than 10cm² of printed
+circuit board, and cost just&nbsp;10 dollars in parts. The power
+stage, too,&nbsp;is simpler than a class AB one, not requiring
+negative feedback, for example, nor gain compensation. The only more
+expensive section in the PWM amplifier, compared to a conventional one,
+is the bank of bandpass filters, where a conventional amplifier
+only requires&nbsp;lowpass ones.</p>
+
+
+
+
+<p>- <strong>Size</strong>: As hinted above, such a
+high efficiency amplifier would be much smaller and lighter than a
+conventional one. That's a big bonus on DXpeditions, but also for
+elderly hams who can't very well lift a 35kg amplifier onto the bench!</p>
+
+
+
+
+<p>- <strong>Stability</strong>: A switching
+amplifier has no issues with bias stability, because it uses no
+quiescent current. Conventional solid state amplifiers require lots of
+attention to this point.</p>
+
+
+
+
+<p>- <strong>Parallelability</strong>: Should it be
+necessary to use several MOSFETs to achieve the desired power, in a switchmode amplifier they can
+most likely be connected in parallel, without taking any special measures. Conventional amplifiers instead
+typically require building several identical amplifier blocks,
+and&nbsp;join them through splitters and combiners, because
+otherwise it's just about impossible to get&nbsp;MOSFETs to
+properly share the load&nbsp;under all conditions when operating in
+linear mode.</p>
+
+
+
+
+<p>&nbsp;And the advantages for conventinal class AB MOSFET
+amplifiers? They have some too, of course: Every child can take a
+schematic from an application note, developed by someone else and
+time-proven, buy the parts (as long as it's a rich child!)&nbsp;and
+assemble it. No brain&nbsp;effort is needed, and the results are
+pretty much guaranteed, as&nbsp;amplifiers have been built to the
+same designs for&nbsp;over 40 years. &nbsp;It's even
+possible to buy kits that have all the parts, buy the PCBs, anything.
+You can even buy the complete amplifiers. It's easy. But expensive, and
+in my opinion, rather boring.</p>
+
+
+
+
+<p>Do you remember the Radio Amateur's Code? Part 3 of it says
+"The Radio Amateur is PROGRESSIVE... with knowledge abreast of science,
+a well-built and <em>efficient</em>
+station..."&nbsp;&nbsp;</p>
+
+
+
+
+<p>Where does a high power class AB amplifier fit in there?</p>
+
+
+
+
+<p>
+</p>
+
+
+
+
+<hr>
+<p></p>
+
+
+
+
+<p>Back to <a href="https://ludens.cl/Electron/Electron.html">homo ludens
+electronicus</a>.</p>
+
+
+
+
+<p>&nbsp;</p>
+
+
+
+
+
+
+</body></html>

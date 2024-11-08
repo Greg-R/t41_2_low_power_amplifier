@@ -1,0 +1,6 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "28F0121-0SR-10")(type "KiCad")(uri "${KIPRJMOD}/library/28F0121_0SR_10/28F0121-0SR-10.kicad_sym")(options "")(descr ""))
+  (lib (name "Auto_Fuse_Holder")(type "KiCad")(uri "${KIPRJMOD}/library/3587TR/Auto_Fuse_Holder.kicad_sym")(options "")(descr ""))
+  (lib (name "InductorTapped")(type "KiCad")(uri "${KIPRJMOD}/library/InductorTapped.kicad_sym")(options "")(descr ""))
+)
