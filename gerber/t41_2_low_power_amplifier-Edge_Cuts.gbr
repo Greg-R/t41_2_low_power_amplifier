@@ -1,11 +1,11 @@
 G04 #@! TF.GenerationSoftware,KiCad,Pcbnew,8.0.6*
-G04 #@! TF.CreationDate,2024-11-10T21:08:28-05:00*
+G04 #@! TF.CreationDate,2024-12-01T18:53:23-05:00*
 G04 #@! TF.ProjectId,t41_2_low_power_amplifier,7434315f-325f-46c6-9f77-5f706f776572,rev?*
 G04 #@! TF.SameCoordinates,Original*
 G04 #@! TF.FileFunction,Profile,NP*
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW 8.0.6) date 2024-11-10 21:08:28*
+G04 Created by KiCad (PCBNEW 8.0.6) date 2024-12-01 18:53:23*
 %MOMM*%
 %LPD*%
 G01*
@@ -16,8 +16,8 @@ G04 #@! TD*
 G04 APERTURE END LIST*
 D10*
 X100000000Y-50000000D02*
-X200000000Y-50000000D01*
-X200000000Y-126250000D01*
+X175750000Y-50000000D01*
+X175750000Y-126250000D01*
 X100000000Y-126250000D01*
 X100000000Y-50000000D01*
 M02*

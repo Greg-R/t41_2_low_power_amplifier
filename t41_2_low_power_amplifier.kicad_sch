@@ -3226,6 +3226,12 @@
 		(uuid "38fd2959-9f2e-4b78-8a1a-a70d8eacdf45")
 	)
 	(junction
+		(at 200.66 118.11)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "42923ef2-cab8-44dc-8f45-ed9f1140860a")
+	)
+	(junction
 		(at 175.26 118.11)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3248,12 +3254,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "83fcc38b-6153-4d7f-839f-3381ad95fd3a")
-	)
-	(junction
-		(at 109.22 156.21)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "89226769-69a4-469a-b242-f1d07e940ae4")
 	)
 	(junction
 		(at 119.38 118.11)
@@ -3314,6 +3314,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "dffb272e-dd91-4014-8a8a-a59252ae4f07")
+	)
+	(junction
+		(at 205.74 118.11)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e0f50581-6e01-47a3-a9da-4277ecb8ed41")
 	)
 	(junction
 		(at 185.42 125.73)
@@ -3487,16 +3493,6 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 162.56) (xy 109.22 165.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "14073c21-6156-4b7f-8827-6fc6021ad3a3")
-	)
-	(wire
-		(pts
 			(xy 139.7 41.91) (xy 144.78 41.91)
 		)
 		(stroke
@@ -3644,16 +3640,6 @@
 			(type default)
 		)
 		(uuid "26e13b83-c0e8-47f2-9605-e87009bf6bdc")
-	)
-	(wire
-		(pts
-			(xy 109.22 156.21) (xy 109.22 157.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "28df6f89-782d-408b-b2d1-e097ce892f40")
 	)
 	(wire
 		(pts
@@ -3814,16 +3800,6 @@
 			(type default)
 		)
 		(uuid "372c0d51-69e8-4525-81be-1d675695ab4c")
-	)
-	(wire
-		(pts
-			(xy 99.06 156.21) (xy 109.22 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "38c4a426-c9c1-4bae-af66-df7fc81ee256")
 	)
 	(wire
 		(pts
@@ -4297,6 +4273,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 118.11) (xy 205.74 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "881ca0cc-e437-4789-a217-54e456e473b7")
+	)
+	(wire
+		(pts
 			(xy 149.86 41.91) (xy 152.4 41.91)
 		)
 		(stroke
@@ -4727,7 +4713,7 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 156.21) (xy 119.38 156.21)
+			(xy 99.06 156.21) (xy 119.38 156.21)
 		)
 		(stroke
 			(width 0)
@@ -4904,6 +4890,16 @@
 			(type default)
 		)
 		(uuid "f6b480cb-7708-4837-9088-c4d27597d1d4")
+	)
+	(wire
+		(pts
+			(xy 200.66 118.11) (xy 200.66 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f9271159-7f9a-44e2-bf0b-b4ba94e159ed")
 	)
 	(wire
 		(pts
@@ -5872,6 +5868,73 @@
 			(project ""
 				(path "/2dfc3106-0fe9-4b2c-b32a-a54bf0a73e15"
 					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 203.2 123.19 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0cd7e790-e5d5-4288-b59e-c59deae7800e")
+		(property "Reference" "R7"
+			(at 203.2 125.73 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100"
+			(at 203.2 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+			(at 203.2 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 203.2 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 203.2 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "1b26ed71-e5c1-4bc4-8c3a-6ba44122af6e")
+		)
+		(pin "1"
+			(uuid "09dbbca1-9706-4e45-af90-c15d8787ad1c")
+		)
+		(instances
+			(project "t41_2_low_power_amplifier"
+				(path "/2dfc3106-0fe9-4b2c-b32a-a54bf0a73e15"
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -7639,71 +7702,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 109.22 165.1 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "41ee8c9e-8aa2-41aa-aa7f-75485d9f4c58")
-		(property "Reference" "#PWR014"
-			(at 109.22 171.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 109.22 168.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 109.22 165.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 109.22 165.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 109.22 165.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ed03e977-3035-48bb-bf84-2825ca1d16ce")
-		)
-		(instances
-			(project "t41_2_power_amplifier"
-				(path "/2dfc3106-0fe9-4b2c-b32a-a54bf0a73e15"
-					(reference "#PWR014")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:FerriteBead_Small")
 		(at 95.25 118.11 90)
 		(unit 1)
@@ -8700,76 +8698,6 @@
 			(project ""
 				(path "/2dfc3106-0fe9-4b2c-b32a-a54bf0a73e15"
 					(reference "H1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized_Small_US")
-		(at 109.22 160.02 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6b1d0632-4868-4707-9e40-b8c5dd658e30")
-		(property "Reference" "C10"
-			(at 111.76 158.3181 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "47uF"
-			(at 111.76 160.8581 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:CP_Elec_6.3x5.7"
-			(at 109.22 160.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 109.22 160.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small US symbol"
-			(at 109.22 160.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "6c90b1d1-ced2-4e65-b884-34d9a644b0f2")
-		)
-		(pin "1"
-			(uuid "2a156b32-9c11-448b-a024-b3e3552564f1")
-		)
-		(instances
-			(project "t41_2_power_amplifier"
-				(path "/2dfc3106-0fe9-4b2c-b32a-a54bf0a73e15"
-					(reference "C10")
 					(unit 1)
 				)
 			)
