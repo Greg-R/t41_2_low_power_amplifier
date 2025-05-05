@@ -2960,6 +2960,16 @@
 		)
 		(uuid "2516d820-ac80-4fe3-afb9-507a701767f9")
 	)
+	(text "  BN-43-302\n   3 TURNS\n TRIFILAR #26"
+		(exclude_from_sim no)
+		(at 200.66 53.34 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "28703889-d561-4e81-9198-6ecec2153e71")
+	)
 	(text "BFU590G SOT-223"
 		(exclude_from_sim no)
 		(at 179.07 45.72 0)
@@ -3068,6 +3078,16 @@
 		)
 		(uuid "a7066fa4-66b0-4f28-bb8a-ff94f826db50")
 	)
+	(text "  BN-43-302\n   3 TURNS\n BIFILAR #26\n  SECONDARY\nCENTER-TAPPED"
+		(exclude_from_sim no)
+		(at 103.505 52.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "be04cf1b-f713-440d-a7a4-af69581448eb")
+	)
 	(text "WIDEBAND DARLINGTON AMPLIFIER"
 		(exclude_from_sim no)
 		(at 68.58 43.18 0)
@@ -3092,7 +3112,7 @@
 		)
 		(uuid "e4e9033d-91a4-4d38-a678-5714e9aa29a5")
 	)
-	(text "12V REGULATOR"
+	(text "10V REGULATOR"
 		(exclude_from_sim no)
 		(at 130.81 107.95 0)
 		(effects
