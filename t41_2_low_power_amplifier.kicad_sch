@@ -4784,17 +4784,7 @@
 		)
 		(uuid "3c0458ec-eeb2-4006-8aff-addacdaf938e")
 	)
-	(label "12V_REG"
-		(at 148.59 118.11 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4cbf3792-1a46-497d-af74-14685779f292")
-	)
-	(label "12V_FINAL"
+	(label "10V_FINAL_REG"
 		(at 176.53 68.58 0)
 		(effects
 			(font
@@ -4836,7 +4826,7 @@
 		)
 		(uuid "81811d11-9ce0-4099-ad70-97c75beeb6e0")
 	)
-	(label "12V_FINAL"
+	(label "10V_FINAL_REG"
 		(at 175.26 118.11 0)
 		(effects
 			(font

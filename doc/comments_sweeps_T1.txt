@@ -1,9 +1,0 @@
-VNA Sweeps
-
-VNA SWR Sweep of PennyWhistle - done with miniVNA Pro.
-(For these sweeps, specifically, I was following the instructions in the assembly manual:
-(If you are concerned about your proper assembly of transformer T1, an easy check is to connect an antenna analyzer, such as an MFJ-259 into the input connector (powered off) and you should see a VSWR below 1.5 from 1.8 MHz to 50 MHz, dipping down to 1.2 or lower around 10 MHz.)
-
-Here are the files: - zip file of Excel Spreadsheet, uncompressed Excel Spreadsheet, PDF file of Excel Spreadsheet.
-(Contact AJ6BC if you'd like to see this in another file format.)
-
