@@ -4,4 +4,5 @@
   (lib (name "Auto_Fuse_Holder")(type "KiCad")(uri "${KIPRJMOD}/library/3587TR/Auto_Fuse_Holder.kicad_sym")(options "")(descr ""))
   (lib (name "InductorTapped")(type "KiCad")(uri "${KIPRJMOD}/library/InductorTapped.kicad_sym")(options "")(descr ""))
   (lib (name "MCP1804_SOT89")(type "KiCad")(uri "/home/raven/gitrepos/pcb/downloaded_parts/KiCADv6/MCP1804_SOT89.kicad_sym")(options "")(descr ""))
+  (lib (name "MCP9509")(type "KiCad")(uri "/home/raven/gitrepos/pcb/downloaded_parts/KiCADv6/MCP9509.kicad_sym")(options "")(descr ""))
 )
