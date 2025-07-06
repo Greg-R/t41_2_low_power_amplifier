@@ -6,8 +6,8 @@
 	(paper "USLetter")
 	(title_block
 		(title "T41-2 RF Power Amplifier")
-		(date "2025-01-19")
-		(rev "1.3")
+		(date "2025-07-06")
+		(rev "1.6")
 	)
 	(lib_symbols
 		(symbol "Connector:Screw_Terminal_01x02"
@@ -3704,7 +3704,7 @@
 	)
 	(text "T41-2 RF LOW POWER AMPLIFIER"
 		(exclude_from_sim no)
-		(at 129.54 19.05 0)
+		(at 127 24.13 0)
 		(effects
 			(font
 				(size 3 3)
