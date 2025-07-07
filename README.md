@@ -17,6 +17,13 @@ The schematic is here:
 
 <https://github.com/Greg-R/t41_2_low_power_amplifier/blob/main/doc/t41_2_low_power_amplifier.pdf>
 
+# Licensing
+
+Please note the included license files.  The software license, GNU GENERAL PUBLIC LICENSE
+Version 3, covers the design files.
+The hardware license, CERN Open Hardware Licence Version 2 - Strongly Reciprocal, covers
+the PCB and circuitry.
+
 # Design Details
 
 ## First Amplifier Stage
