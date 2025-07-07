@@ -107,6 +107,11 @@ I ordered the cores from:
 
 <https://kitsandparts.com>
 
+You will also need a small quantity of #26 and #288888888 magnet wire.  I order this
+on spools from Amazon:
+
+<https://www.amazon.com/dp/B07DYF89T9?th=1>
+
 # Build Instructions
 
 The Low Power Amplifier build is similar to the other boards in the T41-2 series,
