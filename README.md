@@ -98,7 +98,7 @@ Quantity 1 FT37-43 toroid.
 
 I ordered the cores from:
 
-<kitsandparts.com>
+<https://kitsandparts.com>
 
 # Build Instructions
 
