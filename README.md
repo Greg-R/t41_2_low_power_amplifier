@@ -5,7 +5,7 @@ This PCB was designed using the open-source design tool Kicad 9.0.
 
 The Low Power Amplifier is designed to drive the T41-2 Power Amplifier, described here:
 
-<>
+<https://github.com/Greg-R/t41_2_power_amplifier>
 
 The Low Power Amplifier combined with the Power Amplifier are intended to replace the
 original V11 Power Amplifier which uses IRF510 switching MOSFETs in the final amplifier
@@ -15,7 +15,7 @@ the amplifier operates from a 13.8 volt supply.  No "boost" module is required.
 
 The schematic is here:
 
-<>
+<https://github.com/Greg-R/t41_2_low_power_amplifier/blob/main/doc/t41_2_low_power_amplifier.pdf>
 
 # Design Details
 
@@ -85,11 +85,71 @@ positioned in close proximity to the output amplifier devices.  Experiments are
 ongoing with this device to determine what temperature setting should be used
 and if it is even necessary at all.
 
+## Bill of Material
+
+The Digikey BOM is here:
+
+<>
+
+Three ferrite cores are required:
+
+Quantity 2 BN-43-302 binocular cores.
+Quantity 1 FT37-43 toroid.
+
+I ordered the cores from:
+
+<kitsandparts.com>
+
 # Build Instructions
+
+The Low Power Amplifier build is similar to the other boards in the T41-2 series,
+with the exception being the ferrite cores which must be constructed with great
+care.  I am going to create another document to cover the construction of the
+three ferrite devices (T1, T3, and L1).
 
 # Tune Up
 
 ## DC Bias Adjustment
 
+There is only a single adjustment and that is via the multi-turn potentiometer R17.
+
+It is important to set this potentiometer for minimal bias current before applying
+power!!!  If the potentiometer is oriented as in the photograph (below) the 
+potentiometer should be rotated counterclockwise until up against the stop.
+
+Since this is a Class-AB amplifier, the bias point should be set for optimal
+linearity at the lowest current possible.
+
+I found the optimal bias current while driving the Power Amplifier module and
+monitoring for best linearity during a two-tone test. 
+
+The 13.8 volt current should be set for approximately 150 milliamperes with
+no RF drive.  Slowly rotate the potentiometer clockwise until this current
+is achieved.  The current may drift a few milliamperes as the devices warm up.
+This is normal, and the exact bias current setting is not critical. 
+
 ## Linearity Testing
+
+The T41EEE firmware includes a "two-tone" test which can be used to evaluate the
+linearity of a power amplifier.
+
+# High Resolution Photos
+
+The top side of the completed board:
+
+<https://drive.google.com/file/d/13tjFmVIOSmbxn6YOBmlB2I9z0ALMmamD/view?usp=drive_link>
+
+The bottom side of the completed board:
+
+<https://drive.google.com/file/d/1lU4IJD5YxhBxL0a0n8UEmh57VcUBhkNV/view?usp=drive_link>
+
+# Mounting Bracket
+
+The FreeCad design file for a Low Power Amplifier mounting bracket is here:
+
+<https://github.com/Greg-R/SDT_Case_KF5N/tree/main/bracket>
+
+There is a standard four hole bracket, and a thin bracket with two mounting holes.
+The Low Power Amplifier is small and the think bracket will probably be adequate,
+and it takes up less space on the chassis.
 
