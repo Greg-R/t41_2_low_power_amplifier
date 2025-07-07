@@ -89,7 +89,7 @@ and if it is even necessary at all.
 
 The Digikey BOM is here:
 
-<>
+<https://www.digikey.com/en/mylists/list/TNVL59LTTS>
 
 Three ferrite cores are required:
 
@@ -106,6 +106,9 @@ The Low Power Amplifier build is similar to the other boards in the T41-2 series
 with the exception being the ferrite cores which must be constructed with great
 care.  I am going to create another document to cover the construction of the
 three ferrite devices (T1, T3, and L1).
+
+The board has components on both sides.  I recommend using a hot plate for the
+top side components.  Use a hot air gun for the bottom side components.
 
 # Tune Up
 
@@ -150,6 +153,6 @@ The FreeCad design file for a Low Power Amplifier mounting bracket is here:
 <https://github.com/Greg-R/SDT_Case_KF5N/tree/main/bracket>
 
 There is a standard four hole bracket, and a thin bracket with two mounting holes.
-The Low Power Amplifier is small and the think bracket will probably be adequate,
+The Low Power Amplifier is small and the thin bracket will probably be adequate,
 and it takes up less space on the chassis.
 
